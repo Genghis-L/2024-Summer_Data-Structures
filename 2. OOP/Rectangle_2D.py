@@ -1,5 +1,4 @@
 from Point_2D import *
-import math
 
 
 class Rectangle:
