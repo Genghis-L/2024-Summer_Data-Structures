@@ -1,6 +1,6 @@
 # Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
 
-# Method: convert list to set and compare the length
+# Method: convert list to set and compare the length, as set() function uses hash table, the time complexity is O(n)
 
 
 def has_duplicate(list1: list) -> bool:

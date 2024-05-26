@@ -10,7 +10,7 @@ print("######## UNSORTED ARRAY ########")
 my_array = UnsortedArray.UnsortedArray(capacity)
 
 my_array.display()
-for i in range(capacity+1):
+for i in range(capacity + 1):
     my_array.insert(random.randint(1, 100))
 my_array.display()
 my_array.delete(my_array.getElementAt(19))

@@ -44,6 +44,8 @@ def main_2():
     pizza2 = Pizza(6)
     pizza1 += pizza2
     print(pizza1)
+    pizza3 = pizza1 + pizza2
+    print(pizza3)
 
 
 class Tree:

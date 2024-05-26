@@ -16,7 +16,7 @@ class Employee:
         job (str): The job title of the employee.
     """
 
-    def __init__(self, name: str, ID: str, department: str, job: str) -> None:
+    def __init__(self, name: str, ID: str, department: str, job: str):
         """Initialize Employee with name, ID, department, and job."""
         self.name = name
         self.__ID = ID
@@ -180,8 +180,8 @@ def admin_login() -> bool:
 
     """
 
-    admin_id = "66666"
-    admin_password = "111111"
+    admin_id = "111"
+    admin_password = "111"
     attempts = 3
     while attempts > 0:
         print(f"Administrator Login (Attempts left: {attempts})")
@@ -203,7 +203,7 @@ def admin_login() -> bool:
 def main():
     """Main function to run the Employee Management System."""
 
-    filename = "employees.pkl"
+    filename = "/Users/kehanluo/Documents/GitHub/2024_Summer_Data-Structures/2. OOP/employees.pkl"
 
     employees = load_employees(filename)
 

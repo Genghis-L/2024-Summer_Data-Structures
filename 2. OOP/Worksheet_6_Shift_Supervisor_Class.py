@@ -1,6 +1,6 @@
 # Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
 
-from Worksheet_5_Employee_and_ProductionWorker_Classes import *
+from Worksheet_5_Employee_And_ProductionWorker_Classes import *
 
 
 class ShiftSupervisor(Employee):
