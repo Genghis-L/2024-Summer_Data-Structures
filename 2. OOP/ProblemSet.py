@@ -1,3 +1,7 @@
+# Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
+
+
+# Problem 1
 class Student:
     """Student Class"""
 
@@ -20,6 +24,7 @@ def main_1():
     print(a.get_gpa())
 
 
+# Problem 2
 class Pizza:
     """Pizza Class"""
 
@@ -48,6 +53,7 @@ def main_2():
     print(pizza3)
 
 
+# Problem 3
 class Tree:
     """Tree Class"""
 
