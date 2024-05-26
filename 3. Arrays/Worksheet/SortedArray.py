@@ -1,7 +1,11 @@
+# Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
+
+
 from UnsortedArray import UnsortedArray
 
 
 class SortedArray(UnsortedArray):
+    """A class for a sorted array (from smallest to largest)"""
 
     def __init__(self, capacity):
         super().__init__(capacity)
