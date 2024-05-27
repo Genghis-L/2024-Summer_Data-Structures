@@ -1,8 +1,6 @@
-# Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
-
 class Employee:
     """Employee Class"""
-    
+
     def __init__(self, name, number):
         self.__name = name
         self.__number = number
@@ -22,7 +20,7 @@ class Employee:
 
 class ProductionWorker(Employee):
     """Production Worker Class, Subclass of Employee Class"""
-    
+
     def __init__(self, name, number, shift, pay_rate):
         super().__init__(name, number)
         self.__shift = shift

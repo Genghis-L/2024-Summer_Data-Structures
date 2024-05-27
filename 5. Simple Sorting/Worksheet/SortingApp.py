@@ -2,7 +2,7 @@ import SortingArray
 import random
 
 
-capacity = 20
+capacity = 100
 nb_of_experiments = 6
 
 

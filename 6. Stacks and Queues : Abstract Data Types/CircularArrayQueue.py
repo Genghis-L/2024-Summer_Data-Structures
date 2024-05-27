@@ -1,4 +1,4 @@
-class CircularArrayQueue():
+class CircularArrayQueue:
 
     def __init__(self, capacity):
         self.capacity = capacity
@@ -11,35 +11,55 @@ class CircularArrayQueue():
     def __len__(self):
         return self.size
 
-    #Returns True if the queue is empty, False otherwise.
+    # Returns True if the queue is empty, False otherwise.
     def is_empty(self):
-        #TODO
-        pass
+        # TODO
+        return self.size == 0
 
-    #Returns True if the queue is full, False otherwise.
+    # Returns True if the queue is full, False otherwise.
     def is_full(self):
-        #TODO
-        pass
+        # TODO
+        return self.size == self.capacity
 
     # Inserts a new element at the tail of the queue.
     # Displays error notification if the queue is already at full capacity.
+    # Returns the removed tail value; None when error occurs. 
     def enqueue(self, element):
-        #TODO
-        pass
+        # TODO
+        if self.is_full():
+            print("The max capacity has been reached. ")
+            return None
+        else:
+            pre_tail = self.array[self.tail]
+            self.array[self.tail] = element
+            self.tail = (self.tail+1) % self.capacity
+            self.size += 1
+        return pre_tail
 
     # Removes the head element from the queue.
     # Displays error notification if the queue is empty.
+    # Returns the removed head value; None when error occurs. 
     def dequeue(self):
-        #TODO
-        pass
-    
+        # TODO
+        if self.is_empty():
+            print("The queue is empty. ")
+            return None
+        else:
+            pre_head = self.array[self.head]
+            self.array[self.head] = None
+            self.head = (self.head+1) % self.capacity
+            self.size -= 1
+        return pre_head
+
     # Returns the value of the head element in the queue.
     # Returns None if the queue is empty.
     # Does not remove the head from the queue.
     def peek(self):
-        #TODO
-        pass
-
+        # TODO
+        if self.is_empty():
+            return None
+        else:
+            return self.array[self.head]
 
     def __str__(self):
         s = str(self.size) + " values\n[ "
@@ -53,6 +73,7 @@ class CircularArrayQueue():
 
 def testQueue():
     import random
+
     print("------------------------------")
     print("         TEST - QUEUE")
     print("------------------------------")
@@ -63,7 +84,7 @@ def testQueue():
     myqueue.enqueue(8)
     print(myqueue)
     print(">> Fill up queue")
-    while (not myqueue.is_full()):
+    while not myqueue.is_full():
         myqueue.enqueue(random.randint(0, 20))
     print(myqueue)
     print(">> Illegal enqueue twice")
@@ -78,13 +99,13 @@ def testQueue():
     print(myqueue.dequeue())
     print(myqueue)
     print(">> Fill up queue again")
-    while (not myqueue.is_full()):
+    while not myqueue.is_full():
         myqueue.enqueue(random.randint(0, 20))
     print(myqueue)
     print(">> Empty queue")
-    while (not myqueue.is_empty()):
+    while not myqueue.is_empty():
         print(myqueue.dequeue())
     print(myqueue)
 
-    
+
 testQueue()

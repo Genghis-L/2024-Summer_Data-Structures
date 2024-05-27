@@ -44,7 +44,7 @@ class SortingArray:
         nb_swaps = 0  # Number of swaps
 
         # TODO
-        n = len(sorted_array)
+        n = self.get_size()
 
         for i in range(n):
             swapped = False
@@ -73,7 +73,7 @@ class SortingArray:
         nb_swaps = 0  # Number of swaps
 
         # TODO
-        n = len(sorted_array)
+        n = self.get_size()
 
         for i in range(n):
             min_idx = i
@@ -100,7 +100,7 @@ class SortingArray:
         nb_swaps = 0  # Number of swaps
 
         # TODO
-        n = len(sorted_array)
+        n = self.get_size()
 
         for i in range(1, n):  # No need to look at the first one
             idx = i
