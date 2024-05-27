@@ -80,6 +80,7 @@ class SortingArray:
             for j in range(i + 1, n):
                 nb_comps += 1
                 if sorted_array[j] < sorted_array[min_idx]:
+                    # To make it stable, we can add another condition here: (sorted_array[j] == sorted_array[min_idx] and j < min_idx)
                     min_idx = j
 
             if min_idx != i:  # Otherwise, no need to swap
@@ -110,7 +111,7 @@ class SortingArray:
                     self.swap(sorted_array, j, idx)
                     idx = j
                     nb_swaps += 1
-                else:  # We can break if we see one that is no greater
+                else:  # We can break if we see one that is not greater
                     break
 
         return sorted_array, nb_comps, nb_swaps
