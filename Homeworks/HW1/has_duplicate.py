@@ -2,7 +2,7 @@
 
 # Solution1: basic loop
 # Solution2: convert list to set and compare the length, as set() function uses hash table, the time complexity is O(n)
-
+# Solution3 -- contributed by Rongyao Li (Charlie): using dictionary to reduce time at the cost of memory
 
 def has_duplicate(list1: list) -> bool:
     """
@@ -24,6 +24,17 @@ def has_duplicate(list1: list) -> bool:
     ## Solution 2: O(n)
     # set1 = set(list1)
     # return len(set1) != len(list1)
+    
+    ## Solution 3: O(n)   - -  contributed by Rongyao Li (Charlie)
+    # def has_duplicate(list1):
+    # d = {}
+    # for i in list1:
+    #     d[i] = d.get(i, 0) + 1
+    # for m in d.values():
+    #     if m > 1:
+    #         return True  # 
+    # return False  # 
+
 
 
 """
