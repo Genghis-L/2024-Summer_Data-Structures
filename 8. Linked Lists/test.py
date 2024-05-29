@@ -7,8 +7,7 @@ class Node:
 temp = Node(17, None)
 temp = Node(23, temp)
 temp = Node(97, temp)
-temp = Node(44, temp)
-my_list = temp
+my_list = Node(44, temp)
 
 current = my_list
 while current:
