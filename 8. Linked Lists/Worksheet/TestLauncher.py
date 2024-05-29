@@ -38,6 +38,13 @@ def testDLL():
         test_list.add_first(random.randint(0, 20))
     print("Test list length 8, looks like:")
     print(test_list)
+    print()
+    print("--------------------------------------------------------")
+    k = random.randint(0, len(test_list) - 1)
+    print(f"Testing insert_after_{k}th_position(starting from 0) ............")
+    test_list.insert_after_kth_index(k, "Hi")
+    print(test_list)
+    print("--------------------------------------------------------")
 
 
 def testStack():

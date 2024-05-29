@@ -101,7 +101,7 @@ class SingleLinkedList:
             curNode = curNode._next
         # Now the curNode is the place we insert after
 
-        # creat the inserted Node
+        # create the inserted Node
         newNode = self._Node(e, curNode._next)
 
         # change the ref of the curNode to the new Node

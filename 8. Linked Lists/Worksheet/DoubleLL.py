@@ -124,7 +124,7 @@ class DoubleLinkedList:
 
     def insert_after_kth_index(self, k, e):
         """Insert an element after the k-th index."""
-        
+
         if k >= self._size:  # equality as Index starts at 0
             print("The linkedlist is smaller than k.")
             return None
@@ -135,18 +135,17 @@ class DoubleLinkedList:
             curNode = curNode._next
         # Now the curNode is the place we insert after
 
-        # creat the inserted Node
+        # create the inserted Node
         newNode = self._Node(e, curNode, curNode._next)
-        
-        if curNode._next is not None:   
+
+        if curNode._next == None:
+            # If the inserted place is tail
+            self._tail = newNode
+        else:
             # If the inserted place is not tail
             curNode._next._prev = newNode
-            
-        curNode._next = newNode
 
-        if newNode._next is None:  
-            # If inserted Node is now the last node, set it as tail
-            self._tail = newNode
+        curNode._next = newNode
 
         self._size += 1
 
