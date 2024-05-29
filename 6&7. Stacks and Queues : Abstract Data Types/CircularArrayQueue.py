@@ -23,22 +23,21 @@ class CircularArrayQueue:
 
     # Inserts a new element at the tail of the queue.
     # Displays error notification if the queue is already at full capacity.
-    # Returns the removed tail value; None when error occurs. 
+    # Returns None
     def enqueue(self, element):
         # TODO
         if self.is_full():
             print("The max capacity has been reached. ")
-            return None
         else:
-            pre_tail = self.array[self.tail]
             self.array[self.tail] = element
-            self.tail = (self.tail+1) % self.capacity
+            self.tail = (self.tail + 1) % self.capacity
             self.size += 1
-        return pre_tail
+        return None
 
     # Removes the head element from the queue.
     # Displays error notification if the queue is empty.
-    # Returns the removed head value; None when error occurs. 
+    # Returns the removed head value
+    # Returns None when error occurs.
     def dequeue(self):
         # TODO
         if self.is_empty():
@@ -47,7 +46,7 @@ class CircularArrayQueue:
         else:
             pre_head = self.array[self.head]
             self.array[self.head] = None
-            self.head = (self.head+1) % self.capacity
+            self.head = (self.head + 1) % self.capacity
             self.size -= 1
         return pre_head
 

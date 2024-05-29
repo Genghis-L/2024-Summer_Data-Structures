@@ -77,11 +77,13 @@ class SortingArray:
 
         for i in range(n):
             min_idx = i
+            min = sorted_array[min_idx]
             for j in range(i + 1, n):
                 nb_comps += 1
-                if sorted_array[j] < sorted_array[min_idx]:
+                if sorted_array[j] < min:
                     # To make it stable, we can add another condition here: (sorted_array[j] == sorted_array[min_idx] and j < min_idx)
                     min_idx = j
+                    min = sorted_array[min_idx]
 
             if min_idx != i:  # Otherwise, no need to swap
                 self.swap(sorted_array, i, min_idx)
@@ -102,10 +104,11 @@ class SortingArray:
         # TODO
         n = self.get_size()
 
-        for i in range(1, n):  # No need to look at the first one
+        for i in range(1, n):
+            # i is the index of last elts in sorted array, no need to look at the first one
             idx = i
             for j in range(i - 1, -1, -1):
-                # Using swap one by one from end to front to achieve insertion, it is equivalent to using reassignment as they are all O(n) time complexity per loop
+                # Using swap one by one from end to front to achieve insertion of the first elts in the unsorted array, it is equivalent to using reassignment as they are all O(n) time complexity per loop
                 nb_comps += 1
                 if sorted_array[j] > sorted_array[idx]:
                     self.swap(sorted_array, j, idx)
