@@ -35,14 +35,14 @@ class SingleLinkedList:
         if self.is_empty():
             print("The linkedlist is empty. ")
             return None
-        else:
-            return self._head._element
+
+        return self._head._element
 
     def insert_from_head(self, e):
         """Add element e to the head of the linkedlist."""
         # TODO
-        new_node = self._Node(e, self._head)  # Create a new Node
-        self._head = new_node  # Set the new Node as the head
+        newNode = self._Node(e, self._head)  # Create a new Node
+        self._head = newNode  # Set the new Node as the head
         self._size += 1
 
     def delete_from_head(self):
@@ -53,11 +53,11 @@ class SingleLinkedList:
         if self.is_empty():
             print("The linkedlist is empty. ")
             return None
-        else:
-            element = self._head._element  # element is the removed head element
-            self._head = self._head._next  # Change the head to the successor
-            self._size -= 1
-            return element
+
+        element = self._head._element  # element is the removed head element
+        self._head = self._head._next  # Change the head to the successor
+        self._size -= 1
+        return element
 
     def __str__(self):
         result = []
@@ -76,15 +76,15 @@ class SingleLinkedList:
         if self.is_empty():
             print("The linkedlist is empty. ")
             return None
-        else:
-            max_element = self._head._element
-            curNode = self._head._next  # Interator, No need to check the first head
-            # Trverse to find the max_element
-            while curNode is not None:
-                if curNode._element > max_element:
-                    max_element = curNode._element
-                curNode = curNode._next
-            return max_element
+
+        max_element = self._head._element
+        curNode = self._head._next  # Interator, No need to check the first head
+        # Trverse to find the max_element
+        while curNode is not None:
+            if curNode._element > max_element:
+                max_element = curNode._element
+            curNode = curNode._next
+        return max_element
 
     def insert_after_kth_index(self, k, e):
         """Insert an element after the kth index in the list, the index starts at 0.
@@ -94,13 +94,17 @@ class SingleLinkedList:
         if k >= self._size:  # equality as Index starts at 0
             print("The linkedlist is smaller than k.")
             return None
-        else:
-            curNode = self._head
-            # Traverse the linkedlist k steps, so that curNode is the place where we insert after
-            for _ in range(k):
-                curNode = curNode._next
 
-            new_Node = self._Node(e, curNode._next)
-            # create a new Node with ref to the successor of curNode
-            curNode._next = new_Node  # change the ref of the curNode to the new Node
-            self._size += 1
+        # Travese to find the k-th place
+        curNode = self._head
+        for _ in range(k):
+            curNode = curNode._next
+        # Now the curNode is the place we insert after
+
+        # creat the inserted Node
+        newNode = self._Node(e, curNode._next)
+
+        # change the ref of the curNode to the new Node
+        curNode._next = newNode
+
+        self._size += 1
