@@ -1,5 +1,17 @@
-def palindrome_recursive(string, index):
-    pass ##Replace with completed code
+# No idea why we need to use index
+
+
+def palindrome_recursive(string, index=0):
+    #TODO
+    # Two base cases
+    if len(string) == 1:
+        return True
+
+    if len(string) == 2:
+        return string[0] == string[-1]
+
+    return (string[0] == string[-1]) and palindrome_recursive(string[1:-1])
+
 
 def main():
     s1 = "nodevillivedon"
@@ -12,6 +24,5 @@ def main():
     print("s2 is", r2)  # Should be True
     print("s3 is", r3)  # Should be False
 
+
 main()
-    
-    
