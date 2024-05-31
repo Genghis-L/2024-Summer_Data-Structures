@@ -1,23 +1,20 @@
-# We need to use move inside the function hanoi
-
-
 from tkinter import Tk, Canvas
 
 
-def hanoi(num_disks, start, goal, mid, move):
+def hanoi(num_disks, start, goal, mid):
     # TODO
     # Base Case
     if num_disks == 1:
         # If there is only one element, move it to the goal
-        move(num_disks, start, goal)
+        game.move(num_disks, start, goal)
         return
 
     # Put the upper to the mid
-    hanoi(num_disks - 1, start, mid, goal, move)
+    hanoi(num_disks - 1, start, mid, goal)
     # Put the bottom one to the goal, num_disks serves as index of the bottom one
-    move(num_disks, start, goal)
+    game.move(num_disks, start, goal)
     # Put the upper to the goal
-    hanoi(num_disks - 1, mid, goal, start, move)
+    hanoi(num_disks - 1, mid, goal, start)
     return
 
 
@@ -74,7 +71,7 @@ class Tkhanoi:
             self.tk.after(25)
 
     def run(self):
-        hanoi(self.n, 0, 2, 1, self.move)
+        hanoi(self.n, 0, 2, 1)
         self.tk.destroy()
 
     # Reporting callback for the actual hanoi function
