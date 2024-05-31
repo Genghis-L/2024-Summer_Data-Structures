@@ -1,4 +1,5 @@
-# Solution 1: Recursion on size
+# Solution 3: Recursion on size
+# I think this is a also fake recursion because I use the idea of looping in essence
 
 
 def HollywoodBlockBusterGenerator(names, casting_size):
