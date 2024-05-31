@@ -7,6 +7,7 @@ def HollywoodBlockBusterGenerator(names, casting_size):
     print("All the possible casts: ")
     for cast in result_list:
         print(cast)
+
     print(f"\nThe total number of casting: {len(result_list)}")
 
 

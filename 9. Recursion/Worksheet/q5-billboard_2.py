@@ -9,7 +9,7 @@ def HollywoodBlockBusterGenerator(names, casting_size):
     for cast in result_list:
         print(cast)
 
-    print(len(result_list))
+    print(f"\nThe total number of casting: {len(result_list)}")
 
 
 def generateBillboard(names, casting_size, result_list, position, curCast):
