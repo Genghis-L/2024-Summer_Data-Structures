@@ -1,8 +1,12 @@
+# Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
+
+
 from queue import Empty
 
 
 class ArrayQueue:
     """FIFO queue implementation using a Python list as underlying storage."""
+
     DEFAULT_CAPACITY = 5  # moderate capacity for all new queues
 
     def __init__(self):
@@ -19,8 +23,16 @@ class ArrayQueue:
         Of course you shouldn't do those two seperate calls.
         Also avoid modifying self._size.
         """
-        # To do
-        pass
+        # TODO
+        if self.is_empty():
+            raise Empty("Queue is empty")
+        else:
+            # back points to the position next to the last element
+            back = (self._front + self._size) % len(self._data)
+            self._data[back] = self._data[self._front]
+            self._data[self._front] = None  # help garbage collection
+            # move the front pointing to the next position
+            self._front = (self._front + 1) % len(self._data)
 
     def __len__(self):
         """Return the number of elements in the queue."""
@@ -36,7 +48,7 @@ class ArrayQueue:
         Raise Empty exception if the queue is empty.
         """
         if self.is_empty():
-            raise Empty('Queue is empty')
+            raise Empty("Queue is empty")
         return self._data[self._front]
 
     def dequeue(self):
@@ -45,7 +57,7 @@ class ArrayQueue:
         Raise Empty exception if the queue is empty.
         """
         if self.is_empty():
-            raise Empty('Queue is empty')
+            raise Empty("Queue is empty")
         answer = self._data[self._front]
         self._data[self._front] = None  # help garbage collection
         self._front = (self._front + 1) % len(self._data)
@@ -77,35 +89,41 @@ class ArrayQueue:
 
 
 ##############TEST CODES#################
-''' Comment out the test code if you are grading on gradescope.'''
+""" Comment out the test code if you are grading on gradescope."""
 
 
-def main():
-    queue1 = ArrayQueue()
-    queue1.enqueue(3)
-    queue1.enqueue(5)
-    queue1.enqueue(7)
-    queue1.enqueue(9)
-    print("1. Length of Queue: ", len(queue1))
-    print("1. Current Contents of Queue: ", queue1)  # Output: 1. Current Contents of Queue:  [3, 5, 7, 9, None]
-    print("\n")
+# def main():
+#     queue1 = ArrayQueue()
+#     queue1.enqueue(3)
+#     queue1.enqueue(5)
+#     queue1.enqueue(7)
+#     queue1.enqueue(9)
+#     print("1. Length of Queue: ", len(queue1))
+#     print(
+#         "1. Current Contents of Queue: ", queue1
+#     )  # Output: 1. Current Contents of Queue:  [3, 5, 7, 9, None]
+#     print("\n")
 
-    print("Dequeued Element: ", queue1.dequeue())
-    print("2. Length of Queue", len(queue1))
-    print("2. Current Contents of Queue: ", queue1)  # Output: 2. Current Contents of Queue:  [None, 5, 7, 9, None]
-    print("\n")
+#     print("Dequeued Element: ", queue1.dequeue())
+#     print("2. Length of Queue", len(queue1))
+#     print(
+#         "2. Current Contents of Queue: ", queue1
+#     )  # Output: 2. Current Contents of Queue:  [None, 5, 7, 9, None]
+#     print("\n")
 
-    queue1.rotate()
-    print("3. Length of Queue: ", len(queue1))
-    print("3. After Rotating, Current Contents of Queue: ",
-          queue1)  # Output: 3. After Rotating, Current Contents of Queue:  [None, None, 7, 9, 5]
-    print("\n")
+#     queue1.rotate()
+#     print("3. Length of Queue: ", len(queue1))
+#     print(
+#         "3. After Rotating, Current Contents of Queue: ", queue1
+#     )  # Output: 3. After Rotating, Current Contents of Queue:  [None, None, 7, 9, 5]
+#     print("\n")
 
-    queue1.rotate()
-    print("4. Length of Queue: ", len(queue1))
-    print("4. After Rotating, Current Contents of Queue: ",
-          queue1)  # Output: 4. After Rotating, Current Contents of Queue:  [7, None, None, 9, 5]
+#     queue1.rotate()
+#     print("4. Length of Queue: ", len(queue1))
+#     print(
+#         "4. After Rotating, Current Contents of Queue: ", queue1
+#     )  # Output: 4. After Rotating, Current Contents of Queue:  [7, None, None, 9, 5]
 
 
-if __name__ == '__main__':
-    main()
+# if __name__ == "__main__":
+#     main()

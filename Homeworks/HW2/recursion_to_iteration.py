@@ -1,3 +1,6 @@
+# Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
+
+
 def recur(n):
     if n < 0:
         return -1
@@ -11,17 +14,27 @@ def iterative(n):
     """
     Implement this function. This function should do exactly the same job as recur(n).
     """
-    pass
+    if n < 0:
+        return -1
+    elif n < 10:
+        return 1
+    else:
+        # Use iteration to replace recursion
+        count = 1
+        while n >= 10:
+            count += 1
+            n //= 10
+        return count
 
 
-def main():
-    print(recur(21512))
-    print(recur(9891287412))
-    print(recur(-9891287412))
-    print(iterative(21512))
-    print(iterative(9891287412))
-    print(iterative(-9891287412))
+# def main():
+#     print(recur(21512))
+#     print(recur(9891287412))
+#     print(recur(-9891287412))
+#     print(iterative(21512))
+#     print(iterative(9891287412))
+#     print(iterative(-9891287412))
 
 
-if __name__ == '__main__':
-    main()
+# if __name__ == "__main__":
+#     main()
