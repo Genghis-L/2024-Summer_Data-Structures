@@ -70,12 +70,12 @@ def check_tokens(filename):
 """ Comment out the test code if you are grading on gradescope."""
 
 
-def main():
-    filename = "test.c"
-    print(check_tokens(filename))  ### True
+# def main():
+#     filename = "test.c"
+#     print(check_tokens(filename))  ### True
 
-    # You can modify the test.c file to create your own test cases.
+#     # You can modify the test.c file to create your own test cases.
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
