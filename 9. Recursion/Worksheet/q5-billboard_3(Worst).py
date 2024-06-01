@@ -1,8 +1,10 @@
+# Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
 # Solution 3: Recursion on size
-# I think this is a also fake recursion because I use the idea of looping in essence
+# The idea of such recursion is the weakest because we use the idea of looping in essence
 
 
 def HollywoodBlockBusterGenerator(names, casting_size):
+    # TODO
     result_list = []
     generateBillboard(names, casting_size, 0, result_list)
     print("All the possible casts: ")
@@ -13,6 +15,7 @@ def HollywoodBlockBusterGenerator(names, casting_size):
 
 
 def generateBillboard(names, casting_size, position, result_list):
+    # TODO
     # Base case: if the casting size is 0, add an empty list to result_list
     if casting_size == 0:
         result_list.append([])

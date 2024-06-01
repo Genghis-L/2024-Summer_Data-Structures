@@ -1,5 +1,5 @@
-# Solution 2.2: adding a dynamic curCast to realize the include & exclude
-# I think this is a fake recursion because I use the idea of looping in essence
+# Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
+# Solution 1.2: adding a dynamic curCast to put all casts into result_list as a list of lists
 
 
 def HollywoodBlockBusterGenerator(names, casting_size):
@@ -21,12 +21,16 @@ def generateBillboard(names, casting_size, result_list, position, curCast):
         result_list.append(curCast[:])
         return
 
-    for i in range(position, len(names)):
-        # Include the i-th term
-        curCast.append(names[i])
-        generateBillboard(names, casting_size, result_list, i + 1, curCast)
-        # Exclude the i-th term and move to the next position
-        curCast.pop()
+    # Base Case
+    if position >= len(names):
+        return
+
+    # Include the current name and proceed
+    curCast.append(names[position])
+    generateBillboard(names, casting_size, result_list, position + 1, curCast)
+    # Exclude the current name and proceed
+    curCast.pop()
+    generateBillboard(names, casting_size, result_list, position + 1, curCast)
 
 
 casting = [
