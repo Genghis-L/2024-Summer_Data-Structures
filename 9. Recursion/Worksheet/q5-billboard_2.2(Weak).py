@@ -1,6 +1,6 @@
 # Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
 # Solution 2: adding a dynamic curCast to put all casts into result_list as a list of lists
-# The idea of such recursion is weaker because we use the idea of looping in essence
+# The idea of such recursion is weaker because we use looping in essence
 
 
 def HollywoodBlockBusterGenerator(names, casting_size):
