@@ -1,4 +1,3 @@
-# Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
 # Solution 1.1: In-place recursion on position
 
 
@@ -10,7 +9,7 @@ def HollywoodBlockBusterGenerator(names, casting_size):
 
 def generateBillboard(names, casting_size, result_list, position):
     # TODO
-    # If the current combination is of the desired size, add it to the results
+    # If the current combination is of the desired size, print it out
     if len(result_list) == casting_size:
         print(result_list)
         global sum

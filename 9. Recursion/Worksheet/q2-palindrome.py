@@ -1,16 +1,28 @@
 # No idea why we need to use index
 
 
-def palindrome_recursive(string, index=0):
-    #TODO
-    # Two base cases
-    if len(string) == 1:
+# Solution 1: By indicing
+def palindrome_recursive(string, index):
+    # TODO
+    # Base Case
+    if index == len(string) // 2:
         return True
+    if string[index] != string[-index - 1]:
+        return False
+    return palindrome_recursive(string, index + 1)
 
-    if len(string) == 2:
-        return string[0] == string[-1]
 
-    return (string[0] == string[-1]) and palindrome_recursive(string[1:-1])
+## Solution 2: By Slicing
+# def palindrome_recursive(string, index=0):
+#     #TODO
+#     # Two base cases
+#     if len(string) == 1:
+#         return True
+
+#     if len(string) == 2:
+#         return string[0] == string[-1]
+
+#     return (string[0] == string[-1]) and palindrome_recursive(string[1:-1])
 
 
 def main():

@@ -1,4 +1,3 @@
-# Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
 # Solution 1.2: adding a dynamic curCast to put all casts into result_list as a list of lists
 
 

@@ -1,4 +1,3 @@
-# Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
 # Solution 2: Traverse the names to do in-place recursion on position
 # The idea of such recursion is weaker because we use looping in essence
 

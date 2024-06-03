@@ -17,7 +17,7 @@ def recursiveBinarySearch(array, low_index, high_index, element):
 
     if mid_elt == element:
         return f"{mid_elt} at {mid_idx}th position"
-    if mid_elt > element:
+    elif mid_elt > element:
         return recursiveBinarySearch(array, low_index, mid_idx - 1, element)
     else:
         return recursiveBinarySearch(array, mid_idx + 1, high_index, element)
