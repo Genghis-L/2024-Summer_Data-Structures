@@ -22,13 +22,15 @@ def inplace_shell_sort(array):
         for i in range(gap, n):
             temp = array[i]
             j = i
-            while j >= gap and array[j - gap] > temp:
+            while j >= gap:
                 comparisons += 1
+                if array[j - gap] <= temp:
+                    break
                 swap(array, j, j - gap)
                 swaps += 1
                 j -= gap
-            comparisons += 1    # Adding the comparison that breaks the while loop
             array[j] = temp
+
 
 def shell_sort(array):
     """Do the shell sort and return (comparisons, swaps)"""

@@ -39,14 +39,18 @@ def inplace_quick_sort(array, a, b):
 
     while True:
         # while until we find the two elmts need to be swapped
-        while i <= j and array[i] < pivot:
+        while i <= j:
             comparisons += 1
+            if array[i] >= pivot:
+                break
             i += 1
-        while i <= j and array[j] > pivot:
+        while i <= j:
             comparisons += 1
+            if array[j] <= pivot:
+                break
             j -= 1
 
-        if i <= j:
+        if i < j:
             # If these two elmts are valid to swap
             swap(array, i, j)
             swaps += 1
