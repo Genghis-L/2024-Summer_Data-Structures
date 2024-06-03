@@ -26,7 +26,7 @@ def knapsack_driver(capacity, weights):
         # Base Case 2: If we exceed the capacity or we reach the end of weights, return
         if capacity < 0 or position >= len(weights):
             return
-        
+
         # Include the current weight
         curCast.append(weights[position])
         knapsack(capacity - weights[position], weights, position + 1, result, curCast)
