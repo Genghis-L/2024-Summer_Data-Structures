@@ -67,7 +67,7 @@ def inplace_quick_sort(array, a, b):
                 break
             j -= 1
 
-        if i < j:
+        if i <= j:
             # If these two elmts are valid to swap
             swap(array, i, j)
             swaps += 1
@@ -77,7 +77,7 @@ def inplace_quick_sort(array, a, b):
             # Otherwise, we break the outer while and proceed
             break
 
-    # swap the left pointer and the pivot
+    # swap the right pointer and the pivot
     swap(array, i, b)
     swaps += 1
     # one partition is done, pivot is now at correct position

@@ -50,7 +50,7 @@ def inplace_quick_sort(array, a, b):
                 break
             j -= 1
 
-        if i < j:
+        if i <= j:
             # If these two elmts are valid to swap
             swap(array, i, j)
             swaps += 1
