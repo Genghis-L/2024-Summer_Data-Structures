@@ -26,13 +26,11 @@ class ArrayQueue:
         # TODO
         if self.is_empty():
             raise Empty("Queue is empty")
-        else:
-            # back points to the position next to the last element
-            back = (self._front + self._size) % len(self._data)
-            self._data[back] = self._data[self._front]
-            self._data[self._front] = None  # help garbage collection
-            # move the front pointing to the next position
-            self._front = (self._front + 1) % len(self._data)
+        # back points to the position next to the last element
+        back = (self._front + self._size) % len(self._data)
+        self._data[back] = self._data[self._front]
+        # move the front pointing to the next position
+        self._front = (self._front + 1) % len(self._data)
 
     def __len__(self):
         """Return the number of elements in the queue."""
@@ -98,18 +96,19 @@ class ArrayQueue:
 #     queue1.enqueue(5)
 #     queue1.enqueue(7)
 #     queue1.enqueue(9)
+#     queue1.enqueue(9)
 #     print("1. Length of Queue: ", len(queue1))
 #     print(
 #         "1. Current Contents of Queue: ", queue1
 #     )  # Output: 1. Current Contents of Queue:  [3, 5, 7, 9, None]
 #     print("\n")
 
-#     print("Dequeued Element: ", queue1.dequeue())
-#     print("2. Length of Queue", len(queue1))
-#     print(
-#         "2. Current Contents of Queue: ", queue1
-#     )  # Output: 2. Current Contents of Queue:  [None, 5, 7, 9, None]
-#     print("\n")
+#     # print("Dequeued Element: ", queue1.dequeue())
+#     # print("2. Length of Queue", len(queue1))
+#     # print(
+#     #     "2. Current Contents of Queue: ", queue1
+#     # )  # Output: 2. Current Contents of Queue:  [None, 5, 7, 9, None]
+#     # print("\n")
 
 #     queue1.rotate()
 #     print("3. Length of Queue: ", len(queue1))
