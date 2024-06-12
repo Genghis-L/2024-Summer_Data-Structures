@@ -2,6 +2,8 @@
 
 # Dynamic Programming used to trade space for time
 
+# "in" operator for list is ammortizd O(n), for dict and set is ammortized O(1) because of hash table
+
 
 def buy_two_items(credit, list1):
     """
@@ -14,13 +16,13 @@ def buy_two_items(credit, list1):
 
     @return: a tuple of two integers. They should sum up to credit. (Order doesn't matter)
     """
-    memory_lst = []
+    memory = set()
 
     for value in list1:
         complement = credit - value
-        if complement in memory_lst:
+        if complement in memory:
             return (complement, value)
-        memory_lst.append(value)
+        memory.add(value)
 
 
 """
