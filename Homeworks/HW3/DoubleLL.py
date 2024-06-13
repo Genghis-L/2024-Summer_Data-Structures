@@ -1,10 +1,14 @@
+# Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
+
+
 from queue import Empty
 
 
 class DoubleLinkedList:
     class _Node:
         """Lightweight, nonpublic class for storing a doubly linked node."""
-        __slots__ = '_element', '_next', '_prev'  # streamline memory usage
+
+        __slots__ = "_element", "_next", "_prev"  # streamline memory usage
 
         def __init__(self, element, prev, next):  # initialize node's fields
             self._element = element  # reference to user's element
@@ -30,7 +34,7 @@ class DoubleLinkedList:
         Raise Empty exception if the list is empty.
         """
         if self.is_empty():
-            raise Empty('list is empty')
+            raise Empty("list is empty")
         return self._head._element  # front aligned with head of list
 
     def last(self):
@@ -39,7 +43,7 @@ class DoubleLinkedList:
         Raise Empty exception if the list is empty.
         """
         if self.is_empty():
-            raise Empty('list is empty')
+            raise Empty("list is empty")
         return self._tail._element
 
     def delete_first(self):
@@ -48,7 +52,7 @@ class DoubleLinkedList:
         Raise Empty exception if the list is empty.
         """
         if self.is_empty():
-            raise Empty('list is empty')
+            raise Empty("list is empty")
         answer = self._head._element
         self._head = self._head._next
         self._size -= 1
@@ -64,7 +68,7 @@ class DoubleLinkedList:
         Raise Empty exception if the list is empty.
         """
         if self.is_empty():
-            raise Empty('list is empty')
+            raise Empty("list is empty")
         answer = self._tail._element
         self._tail = self._tail._prev
         self._size -= 1
@@ -76,7 +80,9 @@ class DoubleLinkedList:
 
     def add_first(self, e):
         """Add an element to the front of list."""
-        newest = self._Node(e, None, self._head)  # node will be new head node, next point to old head
+        newest = self._Node(
+            e, None, self._head
+        )  # node will be new head node, next point to old head
         if self.is_empty():
             self._tail = newest  # special case: previously empty
         else:
@@ -86,7 +92,9 @@ class DoubleLinkedList:
 
     def add_last(self, e):
         """Add an element to the back of list."""
-        newest = self._Node(e, self._tail, None)  # node will be new tail node, prev point to old tail
+        newest = self._Node(
+            e, self._tail, None
+        )  # node will be new tail node, prev point to old tail
         if self.is_empty():
             self._head = newest  # special case: previously empty
         else:
@@ -97,7 +105,7 @@ class DoubleLinkedList:
     def __str__(self):
         result = []
         curNode = self._head
-        while (curNode is not None):
+        while curNode is not None:
             result.append(str(curNode._element) + " <--> ")
             curNode = curNode._next
         result.append("None")
@@ -121,23 +129,52 @@ class DoubleLinkedList:
             18 <--> 16 <--> 14 <--> 12 <--> None
         """
         # TODO: Problem 4
-        pass
+        # Store all the elmts of otherlist, which are need to be deleted
+        del_elmts = set()
+        curNode = otherlist._head
+        while curNode:
+            del_elmts.add(curNode._element)
+            curNode = curNode._next
+
+        # Traverse self for deletion
+        curNode = self._head
+        while curNode:
+            if curNode._element in del_elmts:
+                # Remove the curNode
+                if curNode._prev is None:
+                    # curNode is head
+                    self._head = curNode._next
+                else:
+                    curNode._prev._next = curNode._next
+
+                if curNode._next is None:
+                    # curNode is tail
+                    self._tail = curNode._prev
+                else:
+                    curNode._next._prev = curNode._prev
+
+                self._size -= 1
+            curNode = curNode._next
 
 
-def main():
-    print("-----------Testing del_anything_occured-------------")
-    l1 = DoubleLinkedList()
-    l2 = DoubleLinkedList()
-    for i in range(10):
-        l1.add_first(i * 2)
-    for j in range(10):
-        l2.add_first(j * 3)
-    print(l1)  # 18 <--> 16 <--> 14 <--> 12 <--> 10 <--> 8 <--> 6 <--> 4 <--> 2 <--> 0 <--> None
-    print(l2)  # 27 <--> 24 <--> 21 <--> 18 <--> 15 <--> 12 <--> 9 <--> 6 <--> 3 <--> 0 <--> None
-    l1.remove_intersection(l2)
-    print(l1, ", Expected: 16 <--> 14 <--> 10 <--> 8 <--> 4 <--> 2 <--> None")
-    print(l2, ", l2 should remain the same.")
+# def main():
+#     print("-----------Testing del_anything_occured-------------")
+#     l1 = DoubleLinkedList()
+#     l2 = DoubleLinkedList()
+#     for i in range(10):
+#         l1.add_first(i * 2)
+#     for j in range(10):
+#         l2.add_first(j * 3)
+#     print(
+#         l1
+#     )  # 18 <--> 16 <--> 14 <--> 12 <--> 10 <--> 8 <--> 6 <--> 4 <--> 2 <--> 0 <--> None
+#     print(
+#         l2
+#     )  # 27 <--> 24 <--> 21 <--> 18 <--> 15 <--> 12 <--> 9 <--> 6 <--> 3 <--> 0 <--> None
+#     l1.remove_intersection(l2)
+#     print(l1, ", Expected: 16 <--> 14 <--> 10 <--> 8 <--> 4 <--> 2 <--> None")
+#     print(l2, ", l2 should remain the same.")
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
