@@ -1,3 +1,6 @@
+# Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
+
+
 import random
 
 

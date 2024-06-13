@@ -1,3 +1,6 @@
+# Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
+
+
 class Empty(Exception):
     def __init__(self, msg):
         self.msg = msg
@@ -648,86 +651,86 @@ def print_spaces(number):
 """ Comment out main if you are grading on gradescope!! """
 
 
-def main():
-    ###################### Generate sample tree 1 #######################
-    T1 = Tree()
-    a = T1.add_root("A")
-    b = T1.add_left(a, "B")
-    c = T1.add_left(b, "C")
-    d = T1.add_right(b, "D")
-    T1.add_left(c, "E")
-    T1.add_right(c, "F")
-    T1.add_left(d, "G")
-    x1 = T1.add_right(a, "1")
-    T1.add_left(x1, "2")
-    x3 = T1.add_right(x1, "3")
-    T1.add_left(x3, "4")
-    x5 = T1.add_right(x3, "5")
-    x6 = T1.add_left(x5, "6")
-    pretty_print(T1)  # If you want to visualize sample tree, uncomment this
+# def main():
+#     ###################### Generate sample tree 1 #######################
+#     T1 = Tree()
+#     a = T1.add_root("A")
+#     b = T1.add_left(a, "B")
+#     c = T1.add_left(b, "C")
+#     d = T1.add_right(b, "D")
+#     T1.add_left(c, "E")
+#     T1.add_right(c, "F")
+#     T1.add_left(d, "G")
+#     x1 = T1.add_right(a, "1")
+#     T1.add_left(x1, "2")
+#     x3 = T1.add_right(x1, "3")
+#     T1.add_left(x3, "4")
+#     x5 = T1.add_right(x3, "5")
+#     x6 = T1.add_left(x5, "6")
+#     pretty_print(T1)  # If you want to visualize sample tree, uncomment this
 
-    ###################### Generate sample tree 2 #######################
+#     ###################### Generate sample tree 2 #######################
 
-    T = Tree()
-    eight = T.add_root(8)
-    three = T.add_left(eight, 3)
-    zero = T.add_right(eight, 0)
-    one = T.add_left(three, 1)
-    six = T.add_right(three, 6)
-    four = T.add_left(six, 4)
-    five = T.add_right(six, 5)
-    seven = T.add_right(zero, 7)
-    two = T.add_left(seven, 2)
-    nine = T.add_left(zero, 9)
-    pretty_print(T)  # If you want to visualize this sample tree, uncomment this
+#     T = Tree()
+#     eight = T.add_root(8)
+#     three = T.add_left(eight, 3)
+#     zero = T.add_right(eight, 0)
+#     one = T.add_left(three, 1)
+#     six = T.add_right(three, 6)
+#     four = T.add_left(six, 4)
+#     five = T.add_right(six, 5)
+#     seven = T.add_right(zero, 7)
+#     two = T.add_left(seven, 2)
+#     nine = T.add_left(zero, 9)
+#     pretty_print(T)  # If you want to visualize this sample tree, uncomment this
 
-    print(
-        "#-------------------------- Problem 1 is_height_balanced tests... --------------------------"
-    )
-    print(T1.is_height_balanced(), "    Expected result is False")
-    # Should be False for this tree
-    print(T.is_height_balanced(), "    Expected result is True")
-    # Should be True for this tree
+#     print(
+#         "#-------------------------- Problem 1 is_height_balanced tests... --------------------------"
+#     )
+#     print(T1.is_height_balanced(), "    Expected result is False")
+#     # Should be False for this tree
+#     print(T.is_height_balanced(), "    Expected result is True")
+#     # Should be True for this tree
 
-    print(
-        "#-------------------------- Problem 2 flip_tree tests... --------------------------"
-    )
-    # for i in T1.nodes():
-    #     print(i._element)
-    #     T1.flip_tree(i)
-    #     pretty_print(T1)
-    T1.flip_tree()
-    T.flip_tree()
-    print(
-        "Now, two test trees should be flipped entirely. (All left/right references are swapped)"
-    )
-    pretty_print(T1)
-    pretty_print(T)
+#     print(
+#         "#-------------------------- Problem 2 flip_tree tests... --------------------------"
+#     )
+#     # for i in T1.nodes():
+#     #     print(i._element)
+#     #     T1.flip_tree(i)
+#     #     pretty_print(T1)
+#     T1.flip_tree()
+#     T.flip_tree()
+#     print(
+#         "Now, two test trees should be flipped entirely. (All left/right references are swapped)"
+#     )
+#     pretty_print(T1)
+#     pretty_print(T)
 
-    print(
-        "#-------------------------- Problem 3 find k-th largest tests... --------------------------"
-    )
-    bst = BinarySearchTree()
-    bst.insert(10)
-    bst.insert(5)
-    bst.insert(15)
-    bst.insert(2)
-    bst.insert(7)
-    bst.insert(12)
-    bst.insert(18)
-    #   10
-    #  / \
-    # /   \
-    # 5   15
-    # / \ / \
-    # 2 7 12 18
-    print("Testing problem 2 find k-th largest... 3rd largest is")
-    print("Your answer:", bst.get_kth_largest(3)._element, ", should be 12")
-    print("Testing problem 2 find k-th largest... 7th largest is")
-    print("Your answer:", bst.get_kth_largest(7)._element, ", should be 2")
-    print("Testing problem 2 find k-th largest... 9th largest is")
-    print("Your answer:", bst.get_kth_largest(9)._element, ", should be 2")
+#     print(
+#         "#-------------------------- Problem 3 find k-th largest tests... --------------------------"
+#     )
+#     bst = BinarySearchTree()
+#     bst.insert(10)
+#     bst.insert(5)
+#     bst.insert(15)
+#     bst.insert(2)
+#     bst.insert(7)
+#     bst.insert(12)
+#     bst.insert(18)
+#     #   10
+#     #  / \
+#     # /   \
+#     # 5   15
+#     # / \ / \
+#     # 2 7 12 18
+#     print("Testing problem 2 find k-th largest... 3rd largest is")
+#     print("Your answer:", bst.get_kth_largest(3)._element, ", should be 12")
+#     print("Testing problem 2 find k-th largest... 7th largest is")
+#     print("Your answer:", bst.get_kth_largest(7)._element, ", should be 2")
+#     print("Testing problem 2 find k-th largest... 9th largest is")
+#     print("Your answer:", bst.get_kth_largest(9)._element, ", should be 2")
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
