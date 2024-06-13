@@ -8,10 +8,10 @@ def print_internal(this_level_nodes, current_level, max_level):
     if (len(this_level_nodes) == 0 or all_elements_are_None(this_level_nodes)):
         return  # Base case of recursion: out of nodes, or only None left
 
-    floor = max_level - current_level;
-    endgeLines = 2 ** max(floor - 1, 0);
-    firstSpaces = 2 ** floor - 1;
-    betweenSpaces = 2 ** (floor + 1) - 1;
+    floor = max_level - current_level
+    endgeLines = 2 ** max(floor - 1, 0)
+    firstSpaces = 2 ** floor - 1
+    betweenSpaces = 2 ** (floor + 1) - 1
     print_spaces(firstSpaces)
     next_level_nodes = []
     for node in this_level_nodes:

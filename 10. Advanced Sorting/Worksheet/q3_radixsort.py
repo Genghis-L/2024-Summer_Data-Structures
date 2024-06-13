@@ -2,24 +2,26 @@ import random
 from queue import Empty
 import math
 
+
 class LinkedQueue:
     """FIFO queue implementation using a singly linked list for storage."""
 
-    #-------------------------- nested _Node class --------------------------
+    # -------------------------- nested _Node class --------------------------
     class _Node:
         """Lightweight, nonpublic class for storing a singly linked node."""
-        __slots__ = '_element', '_next'         # streamline memory usage
+
+        __slots__ = "_element", "_next"  # streamline memory usage
 
         def __init__(self, element, next):
             self._element = element
             self._next = next
 
-    #------------------------------- queue methods -------------------------------
+    # ------------------------------- queue methods -------------------------------
     def __init__(self):
         """Create an empty queue."""
         self._head = None
         self._tail = None
-        self._size = 0                          # number of queue elements
+        self._size = 0  # number of queue elements
 
     def __len__(self):
         """Return the number of elements in the queue."""
@@ -35,8 +37,8 @@ class LinkedQueue:
         Raise Empty exception if the queue is empty.
         """
         if self.is_empty():
-            raise Empty('Queue is empty')
-        return self._head._element              # front aligned with head of list
+            raise Empty("Queue is empty")
+        return self._head._element  # front aligned with head of list
 
     def dequeue(self):
         """Remove and return the first element of the queue (i.e., FIFO).
@@ -44,29 +46,28 @@ class LinkedQueue:
         print Empty exception if the queue is empty.
         """
         if self.is_empty():
-            print('Queue is empty')
+            print("Queue is empty")
         answer = self._head._element
         self._head = self._head._next
         self._size -= 1
-        if self.is_empty():                     # special case as queue is empty
-            self._tail = None                     # removed head had been the tail
+        if self.is_empty():  # special case as queue is empty
+            self._tail = None  # removed head had been the tail
         return answer
 
     def enqueue(self, e):
         """Add an element to the back of queue."""
-        newest = self._Node(e, None)            # node will be new tail node
+        newest = self._Node(e, None)  # node will be new tail node
         if self.is_empty():
-            self._head = newest                   # special case: previously empty
+            self._head = newest  # special case: previously empty
         else:
             self._tail._next = newest
-        self._tail = newest                     # update reference to tail node
+        self._tail = newest  # update reference to tail node
         self._size += 1
-
 
     def __repr__(self):
         result = []
         temp = self._head
-        while (temp != None):
+        while temp != None:
             result.append(str(temp._element) + "-->")
             temp = temp._next
         result.append("None")
@@ -74,42 +75,55 @@ class LinkedQueue:
 
 
 def determine_digit(integer, digit):
-    ''' Given a integer, determine the value (0 - 9) at a certain digit
-        @value: the integer
-        @digit: the digit to determine within integer, start from 0
-        
-        return: the decimal value (0 - 9) at digit for given integer
+    """Given an integer, determine the value (0 - 9) at a certain digit
+    @value: the integer
+    @digit: the digit to determine within integer, start from 0
 
-        Example: determine_digit(9876, 1) --> 7
-                 determine_digit(9876, 0) --> 6
-    '''
-    # To do
-    return integer // (10 ** digit) % 10
+    return: the decimal value (0 - 9) at digit for given integer
+
+    Example: determine_digit(9876, 1) --> 7
+             determine_digit(9876, 0) --> 6
+    """
+    # TODO
+    return integer // (10**digit) % 10
 
 
 def radix_sort(array):
-    ''' Performs radix sort on the array 
-        Assume array contains integer only.
-        @array: the list being sorted
-    '''
-    # To do
-    ten_queues = [LinkedQueue() for i in range(10)]
-    digit = 0                      # Currently processing digit
-    total_passes = 0               # How many digit maximum, will be calculated
-    maximum = 0                
+    """Performs radix sort on the array
+    Assume array contains integer only.
+    @array: the list being sorted
+    """
+    # TODO
+    if not array:
+        return
 
-    while (digit < total_passes):
+    ten_queues = [LinkedQueue() for i in range(10)]
+    digit = 0  # Currently processing digit
+    total_passes = 0  # How many digit maximum, will be calculated
+    maximum = 0
+
+    while digit <= total_passes:
         # find the max number in the 1st iteration,
         # because this max number determines how many loops
+        for each in array:
+            if each > maximum:
+                maximum = each
+        total_passes = math.floor(math.log10(maximum)) + 1
 
         # put numbers into queues by digit
         for each in array:
-            pass
+            digit_value = determine_digit(each, digit)
+            ten_queues[digit_value].enqueue(each)
 
-
+        idx = 0
         for i in range(10):
             # Take numbers out from 10 queues
-            pass
+            while not ten_queues[i].is_empty():
+                array[idx] = ten_queues[i].dequeue()
+                idx += 1
+
+        digit += 1
+
 
 def main():
     array = []
@@ -122,4 +136,6 @@ def main():
     print("After sorting:")
     print(array)
     print("Is array sorted???", array == sorted(array))
+
+
 main()
