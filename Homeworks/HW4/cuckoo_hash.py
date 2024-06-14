@@ -40,7 +40,18 @@ class CuckooHashTable:
         raise KeyError if k does not exist in the table
         """
         # TODO
-        pass
+        # Get the item's hash idx in two hash tables
+        idx1 = self._hash1(k)
+        idx2 = self._hash2(k)
+
+        # Check hash table 1
+        if self._array1[idx1] is not None and self._array1[idx1]._key == k:
+            return self._array1[idx1]._value
+        # Check hash table 2
+        if self._array2[idx2] is not None and self._array2[idx2]._key == k:
+            return self._array2[idx2]._value
+
+        raise KeyError(f"The key {k} does not exist in the table")
 
     def __setitem__(self, k, v):
         """if key k exists in either array, modify associated value to v
@@ -49,14 +60,58 @@ class CuckooHashTable:
         Hint: You may want to use the _resize function for cycles
         """
         # TODO
-        pass
+        item = Item(k, v)
+        initial_key = item._key  # Track the initial key to detect cycles
+        while True:
+            # Check hash table 1
+            idx1 = self._hash1(item._key)
+            # Set the item if position is empty
+            if self._array1[idx1] is None:
+                self._array1[idx1] = item
+                self._size += 1
+                return
+            # Otherwise, let new item take place of the position and look new position for the original item
+            self._array1[idx1], item = item, self._array1[idx1]
+
+            # Check hash table 2
+            idx2 = self._hash2(item._key)
+            # Set the item if position is empty
+            if self._array2[idx2] is None:
+                self._array2[idx2] = item
+                self._size += 1
+                return
+            # Otherwise, let new item take place of the position and look new position for the original item
+            self._array2[idx2], item = item, self._array2[idx2]
+
+            # If we encounter the initial key again, we are in a circle
+            if item._key is initial_key:
+                break
+
+        # If there is a circle occurred, resize/rehash the table and do insertion from start
+        self._resize()
+        self.__setitem__(k, v)
 
     def __delitem__(self, k):
         """given a key k, set the corresponding index in self._array1 or self._array2 to None
         raise KeyError if k does not exist in the table
         """
         # TODO
-        pass
+        # Get the item's hash idx in two hash tables
+        idx1 = self._hash1(k)
+        idx2 = self._hash2(k)
+
+        # Check hash table 1
+        if self._array1[idx1] is not None and self._array1[idx1]._key == k:
+            self._array1[idx1] = None
+            self._size -= 1
+            return
+        # Check hash table 2
+        if self._array2[idx2] is not None and self._array2[idx2]._key == k:
+            self._array2[idx2] = None
+            self._size -= 1
+            return
+
+        raise KeyError(f"The key {k} does not exist in the table")
 
     def _resize(self):
         """double the size of self._array1, self._array2.
@@ -64,18 +119,31 @@ class CuckooHashTable:
         Remember to rehash all the old (key, value) pairs!
         """
         # TODO
-        pass
+        # Get a list of all the old items
+        items = list(self.items())
+        # Initialize the new hash tables
+        self._maxsize *= 2
+        self._array1 = [None] * self._maxsize
+        self._array2 = [None] * self._maxsize
+        self._size = 0
+        # Put old items into the new hash tables
+        for item in items:
+            self.__setitem__(item._key, item._value)
 
     def __len__(self):
         # TODO
-        pass
+        return self._size
 
     def __contains__(self, k):
         """return True if key k exists in the table
         return False otherwise
         """
         # TODO
-        pass
+        try:
+            self.__getitem__(k)
+            return True
+        except KeyError:
+            return False
 
     def __iter__(self):
         """same as keys(self)"""
@@ -88,7 +156,8 @@ class CuckooHashTable:
             items = self.items()
             for item in items:
                 yield item._key
-            return keys_generator()
+
+        return keys_generator()
 
     def values(self):
         """yield an generator of values in table"""
@@ -116,13 +185,16 @@ class CuckooHashTable:
 
 def main():
     table = CuckooHashTable()
-    for i in range(200):
+    for i in range(2000):
         # Tests __setitem__, insert 0 ~ 199. _resize() also need to work correctly.
         table[i] = "happy_coding"
 
     print(len(table))  # Tests __len__, should be 200.
 
-    for j in range(195):  # Tests __delitem__, delete 0 ~ 194
+    print(len(table._array1))
+    print(len(table._array2))
+
+    for j in range(1995):  # Tests __delitem__, delete 0 ~ 194
         del table[j]
 
     print(len(table))  # Tests __len__, should be 5.
@@ -130,7 +202,7 @@ def main():
     for j in table.items():  # Tests items()
         print(j._key)  # 195, 196, 197, 198, 199 left in table
 
-    print(table[196])  # Tests __getitem__
+    print(table[1996])  # Tests __getitem__
     # Should print "happy_coding"
 
 
