@@ -48,7 +48,7 @@ class CuckooHashTable:
         # Check hash table 1
         if self._array1[idx1] is not None and self._array1[idx1]._key == k:
             return self._array1[idx1]._value
-        # Check hash table 2 
+        # Check hash table 2
         if self._array2[idx2] is not None and self._array2[idx2]._key == k:
             return self._array2[idx2]._value
 
@@ -61,8 +61,13 @@ class CuckooHashTable:
         Hint: You may want to use the _resize function for cycles
         """
         # TODO
+        # By thoery, insertions succeed in expected constant time, as long as the load factor is below 50%. -- from Wikipedia
+        # Though this initial resizing process may not be very useful to reduce time by my test in practice
+        if self._size > self._maxsize // 2:
+            self._resize()
+
         item = Item(k, v)
-        initial_key = item._key  # Track the initial key to detect cycles
+        inserted_item = item  # Track the initial key to detect cycles
         while True:
             # Check hash table 1
             idx1 = self._hash1(item._key)
@@ -84,8 +89,9 @@ class CuckooHashTable:
             # Otherwise, let new item take place of the position and look new position for the original item
             self._array2[idx2], item = item, self._array2[idx2]
 
-            # If we encounter the initial key again, we are in a circle
-            if item._key is initial_key:
+            # If the inserted item has been displaced from array2, i.e., the inserted item has no place to insert
+            # Then it means we encounter a circle, so break to resize and restart
+            if item is inserted_item:
                 break
 
         # If there is a circle occurred, resize/rehash the table and do insertion from start
@@ -191,6 +197,7 @@ class CuckooHashTable:
 #         table[i] = "happy_coding"
 
 #     print(len(table))  # Tests __len__, should be 200.
+#     # print(len(table._array1))
 
 #     for j in range(195):  # Tests __delitem__, delete 0 ~ 194
 #         del table[j]
@@ -205,4 +212,5 @@ class CuckooHashTable:
 
 
 # if __name__ == "__main__":
+#     # for _ in range(1000):
 #     main()
