@@ -47,7 +47,7 @@ class CuckooHashTable:
         # Check hash table 1
         if self._array1[idx1] is not None and self._array1[idx1]._key == k:
             return self._array1[idx1]._value
-        # Check hash table 2
+        # Check hash table 2 
         if self._array2[idx2] is not None and self._array2[idx2]._key == k:
             return self._array2[idx2]._value
 
@@ -183,28 +183,25 @@ class CuckooHashTable:
         return items_generator()
 
 
-def main():
-    table = CuckooHashTable()
-    for i in range(2000):
-        # Tests __setitem__, insert 0 ~ 199. _resize() also need to work correctly.
-        table[i] = "happy_coding"
+# def main():
+#     table = CuckooHashTable()
+#     for i in range(200):
+#         # Tests __setitem__, insert 0 ~ 199. _resize() also need to work correctly.
+#         table[i] = "happy_coding"
 
-    print(len(table))  # Tests __len__, should be 200.
+#     print(len(table))  # Tests __len__, should be 200.
 
-    print(len(table._array1))
-    print(len(table._array2))
+#     for j in range(195):  # Tests __delitem__, delete 0 ~ 194
+#         del table[j]
 
-    for j in range(1995):  # Tests __delitem__, delete 0 ~ 194
-        del table[j]
+#     print(len(table))  # Tests __len__, should be 5.
 
-    print(len(table))  # Tests __len__, should be 5.
+#     for j in table.items():  # Tests items()
+#         print(j._key)  # 195, 196, 197, 198, 199 left in table
 
-    for j in table.items():  # Tests items()
-        print(j._key)  # 195, 196, 197, 198, 199 left in table
-
-    print(table[1996])  # Tests __getitem__
-    # Should print "happy_coding"
+#     print(table[196])  # Tests __getitem__
+#     # Should print "happy_coding"
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
