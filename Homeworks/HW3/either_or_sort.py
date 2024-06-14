@@ -3,13 +3,6 @@
 
 import random
 
-"""
-What is the best-case runtime complexity of Comb sort?
-
-Answer:
-TODO
-"""
-
 
 def either_or_sort(array):
     """EitherOr sort arranges all of the zeros in array at the front, before all of the ones.
