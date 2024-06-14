@@ -1,5 +1,7 @@
 # Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
 
+# Question: For problem 3, how to write a solution that returns self._root?
+
 
 class Empty(Exception):
     def __init__(self, msg):
@@ -572,7 +574,6 @@ class BinarySearchTree(Tree):
         @return: the correct Node object.
         """
         # TODO: Problem 3
-        # Question: How to do return self._root?
         # Use an inorder traverse to store the list of sorted nodes in BST
         sorted_nodes = []
         node = self.first()
