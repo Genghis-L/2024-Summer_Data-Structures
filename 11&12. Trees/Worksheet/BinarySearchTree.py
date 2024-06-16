@@ -66,20 +66,20 @@ class BinarySearchTree:
         # TODO
         if self.is_empty():
             return []
-        
+
         # Initialize the level-ordered list and a queue
         result = []
         queue = [self._root]
 
         while queue:
             # dequeue and store the first elmt
-            current = queue.pop(0)
-            result.extend([current.value] * current.counter)
+            curNode = queue.pop(0)
+            result.extend([curNode.value] * curNode.counter)
             # first append left, second append right
-            if current._left is not None:
-                queue.append(current._left)
-            if current._right is not None:
-                queue.append(current._right)
+            if curNode._left is not None:
+                queue.append(curNode._left)
+            if curNode._right is not None:
+                queue.append(curNode._right)
             # all the elmts in the same layer has been appended from left to right, layer by layer
 
         return result
@@ -103,6 +103,8 @@ class BinarySearchTree:
         # Case (c): the removed node is the root
         elif n == self._root:
             self._root = n.remove()
+            if self._root is not None:
+                self._root._parent = None
         # Regular case
         else:
             n.remove()
