@@ -85,10 +85,10 @@ class BSTNode:
             return self
         # If smaller, search left
         if v < self.value and self._left is not None:
-            return self._left.find(v)
+            self._left.find(v)
         # If bigger, search right
         if v > self.value and self._right is not None:
-            return self._right.find(v)
+            self._right.find(v)
         # Base Case of unfound
         return None
 
@@ -99,10 +99,10 @@ class BSTNode:
         """
         # TODO
         left = []
-        if self._left is not None:
-            left = self._left.list_in_order()
         this = [self.value] * self.counter
         right = []
+        if self._left is not None:
+            left = self._left.list_in_order()
         if self._right is not None:
             right = self._right.list_in_order()
         return left + this + right
@@ -145,8 +145,8 @@ class BSTNode:
                 # if self is the right children of its parent
                 else:
                     self._parent._right = child
-                child._parent = self._parent            
 
+            child._parent = self._parent
             remainder = child
 
         # Case 3: Two children

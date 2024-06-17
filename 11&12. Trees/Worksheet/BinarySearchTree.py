@@ -103,9 +103,6 @@ class BinarySearchTree:
         # Case (c): the removed node is the root
         elif n == self._root:
             self._root = n.remove()
-            if self._root is not None:
-                # The case that the removed node has one child, reset the parent
-                self._root._parent = None
         # Regular case
         else:
             n.remove()

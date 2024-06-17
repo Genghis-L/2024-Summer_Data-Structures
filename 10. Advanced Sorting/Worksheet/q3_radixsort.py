@@ -105,10 +105,11 @@ def radix_sort(array):
     while digit <= total_passes:
         # find the max number in the 1st iteration,
         # because this max number determines how many loops
-        for each in array:
-            if each > maximum:
-                maximum = each
-        total_passes = math.floor(math.log10(maximum)) + 1
+        if digit == 0:
+            for each in array:
+                if each > maximum:
+                    maximum = each
+            total_passes = math.floor(math.log10(maximum))
 
         # put numbers into queues by digit
         for each in array:
