@@ -127,6 +127,7 @@ class BSTNode:
                 # self is the left children of its parent
                 else:
                     self._parent._right = None
+            
             remainder = None
 
         # Case 2: One child
@@ -137,7 +138,7 @@ class BSTNode:
             else:
                 child = self._right
 
-            # Parent reference reset (no need to do with root)
+            # Parent reference reset
             if self._parent is not None:
                 # if self is the left children of its parent
                 if self._parent._left == self:
@@ -145,8 +146,8 @@ class BSTNode:
                 # if self is the right children of its parent
                 else:
                     self._parent._right = child
-
             child._parent = self._parent
+            
             remainder = child
 
         # Case 3: Two children
@@ -163,6 +164,7 @@ class BSTNode:
             # Remove the successor node and return self
             # The successor has at most 1 child
             successor.remove()
+            
             remainder = self
 
         return remainder
