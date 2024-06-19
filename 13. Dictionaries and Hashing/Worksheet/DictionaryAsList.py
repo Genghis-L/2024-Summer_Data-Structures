@@ -1,3 +1,5 @@
+# Python built-in methods are used, capacity is not considered
+
 from DictionaryADT import DictionaryADT
 
 
@@ -46,7 +48,12 @@ class DictionaryAsDoubleList(DictionaryADT):
 
     def put(self, k, v):
         # TODO
-        pass
+        pos = self._keys.find(k)
+        if pos == -1:
+            self._keys.append(k)
+            self._values.append(v)
+        else:
+            self._values[pos] = v
 
     """
     Looks for a KV item whose key matches k in the DADL.
@@ -55,7 +62,11 @@ class DictionaryAsDoubleList(DictionaryADT):
 
     def get(self, k):
         # TODO
-        return None
+        pos = self._keys.find(k)
+        if pos == -1:
+            return None
+        else:
+            return self._values[pos]
 
     """
     Looks for a KV item whose key matches k and removes it from the DADL.
@@ -64,7 +75,13 @@ class DictionaryAsDoubleList(DictionaryADT):
 
     def remove(self, k):
         # TODO
-        return None
+        pos = self._keys.find(k)
+        if pos == -1:
+            return None
+        else:
+            del_value = self._values[pos]
+            self._keys[pos], self._values[pos] = self._keys.pop(), self._values.pop()
+        return del_value
 
     """
     Deletes all the values in the DADL.
