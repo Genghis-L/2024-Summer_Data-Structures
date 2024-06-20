@@ -191,7 +191,7 @@ class AVLNode(BSTNode):
             # Remove the predecessor node and return self
             # The predecessor has at most 1 child
             predecessor.remove()
-            
+
             # We do not need to do the backward traverse again for self since we have done it in the recursion of predecessor
             flag = True
 

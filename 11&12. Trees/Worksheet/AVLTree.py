@@ -1,10 +1,8 @@
 # Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
 
 
-from BinarySearchTree import *
+from BST import *
 from AVLNode import *
-from BSTPrint import *
-import random
 
 
 class AVLTree(BinarySearchTree):
@@ -54,23 +52,3 @@ class AVLTree(BinarySearchTree):
             if self._root is not None:
                 self._root = self._root.rebalance()
         return n
-
-
-def avl_tree_test():
-    tree = AVLTree()
-    for i in range(15):
-        # new_value = random.randint(1, 99)
-        # Worst Case
-        new_value = i
-        print("Adding", new_value)
-        tree.add(new_value)
-        pretty_print(tree)
-
-    for i in tree.list_breadth_first():
-        value = i
-        print("Deleting", value)
-        tree.remove(value)
-        pretty_print(tree)
-
-
-avl_tree_test()
