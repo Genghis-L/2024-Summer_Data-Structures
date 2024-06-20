@@ -85,10 +85,10 @@ class BSTNode:
             return self
         # If smaller, search left
         if v < self.value and self._left is not None:
-            self._left.find(v)
+            return self._left.find(v)
         # If bigger, search right
         if v > self.value and self._right is not None:
-            self._right.find(v)
+            return self._right.find(v)
         # Base Case of unfound
         return None
 
@@ -117,17 +117,19 @@ class BSTNode:
         #        ***removes its successor instead***
         """
         # TODO
+        parent = self._parent
+
         # Case 1: No children (leaf node)
         if self.nb_of_children() == 0:
             # Parent reference reset (no need to do with root)
-            if self._parent is not None:
-                # self is the left children of its parent
-                if self._parent._left == self:
-                    self._parent._left = None
-                # self is the left children of its parent
+            if parent is not None:
+                # self is the left child of its parent
+                if parent._left == self:
+                    parent._left = None
+                # self is the right child of its parent
                 else:
-                    self._parent._right = None
-            
+                    parent._right = None
+
             remainder = None
 
         # Case 2: One child
@@ -139,32 +141,32 @@ class BSTNode:
                 child = self._right
 
             # Parent reference reset
-            if self._parent is not None:
-                # if self is the left children of its parent
-                if self._parent._left == self:
-                    self._parent._left = child
-                # if self is the right children of its parent
+            if parent is not None:
+                # if self is the left child of its parent
+                if parent._left == self:
+                    parent._left = child
+                # if self is the right child of its parent
                 else:
-                    self._parent._right = child
-            child._parent = self._parent
-            
+                    parent._right = child
+            child._parent = parent
+
             remainder = child
 
         # Case 3: Two children
         else:
-            # Find the successor
-            successor = self._right
-            while successor._left is not None:
-                successor = successor._left
+            # Find the predecessor
+            predecessor = self._left
+            while predecessor._right is not None:
+                predecessor = predecessor._right
 
             # Replace the value and counter
-            self.value = successor.value
-            self.counter = successor.counter
+            self.value = predecessor.value
+            self.counter = predecessor.counter
 
-            # Remove the successor node and return self
-            # The successor has at most 1 child
-            successor.remove()
-            
+            # Remove the predecessor node and return self
+            # The predecessor has at most 1 child
+            predecessor.remove()
+
             remainder = self
 
         return remainder

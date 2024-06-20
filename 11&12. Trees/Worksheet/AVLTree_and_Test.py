@@ -1,3 +1,6 @@
+# Copyright 2024 Genghis, 骆可瀚(Luo Kehan), kl4747@nyu.edu
+
+
 from BinarySearchTree import *
 from AVLNode import *
 from BSTPrint import *
@@ -20,8 +23,37 @@ class AVLTree(BinarySearchTree):
         else:
             newNode = self._root.add(v)
             # Do rebalance for the root, which is not covered in AVLNode
-            self._root = self._root.rebalance(v)
+            self._root = self._root.rebalance()
         return newNode
+
+    def remove(self, v):
+        """A function that removes a value v from self
+        # Skip node removal if
+        #       (a) value doesn't occur in the tree
+        #       (b) counter is higher than 1 (decrement counter)
+        Return: a reference to the node containing v; None if no such node found
+        (we have not used this return yet)
+        """
+        n = self.find(v)
+        # Case (a): value doesn't occur in the tree
+        if not n:
+            return None
+        # Case (b): counter is higher than 1 (decrement counter)
+        if n.counter > 1:
+            n.counter -= 1
+        # Case (c): the removed node is the root
+        elif n == self._root:
+            self._root = n.remove()
+            # Ensure the root is rebalanced
+            if self._root is not None:
+                self._root = self._root.rebalance()
+        # Regular case
+        else:
+            n.remove()
+            # Ensure the root is rebalanced
+            if self._root is not None:
+                self._root = self._root.rebalance()
+        return n
 
 
 def avl_tree_test():
@@ -32,6 +64,12 @@ def avl_tree_test():
         new_value = i
         print("Adding", new_value)
         tree.add(new_value)
+        pretty_print(tree)
+
+    for i in tree.list_breadth_first():
+        value = i
+        print("Deleting", value)
+        tree.remove(value)
         pretty_print(tree)
 
 

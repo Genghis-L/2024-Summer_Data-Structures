@@ -2,9 +2,10 @@ from BinarySearchTree import BinarySearchTree
 import BSTPrint
 import random
 
+
 def main():
     tree = BinarySearchTree()
-    for i in range(8):
+    for i in range(12):
         tree.add(random.randint(1, 20))
     print(tree.list_in_order())
     print(tree.height())
