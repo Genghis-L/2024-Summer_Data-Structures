@@ -41,6 +41,9 @@ class DictionaryAsDoubleList(DictionaryADT):
             s += "(" + str(self._keys[i]) + "," + str(self._values[i]) + ")"
         s += "]"
         return s
+    
+    def items(self):
+        return zip(self._keys, self._values)
 
     """
     Inserts a new KV item in the DADL.
@@ -48,12 +51,12 @@ class DictionaryAsDoubleList(DictionaryADT):
 
     def put(self, k, v):
         # TODO
-        pos = self._keys.find(k)
-        if pos == -1:
+        try:
+            pos = self._keys.index(k)
+            self._values[pos] = v
+        except ValueError:
             self._keys.append(k)
             self._values.append(v)
-        else:
-            self._values[pos] = v
 
     """
     Looks for a KV item whose key matches k in the DADL.
@@ -62,11 +65,11 @@ class DictionaryAsDoubleList(DictionaryADT):
 
     def get(self, k):
         # TODO
-        pos = self._keys.find(k)
-        if pos == -1:
-            return None
-        else:
+        try:
+            pos = self._keys.index(k)
             return self._values[pos]
+        except ValueError:
+            return None
 
     """
     Looks for a KV item whose key matches k and removes it from the DADL.
@@ -75,13 +78,13 @@ class DictionaryAsDoubleList(DictionaryADT):
 
     def remove(self, k):
         # TODO
-        pos = self._keys.find(k)
-        if pos == -1:
-            return None
-        else:
+        try:
+            pos = self._keys.index(k)
             del_value = self._values[pos]
             self._keys[pos], self._values[pos] = self._keys.pop(), self._values.pop()
-        return del_value
+            return del_value
+        except ValueError:
+            return None
 
     """
     Deletes all the values in the DADL.

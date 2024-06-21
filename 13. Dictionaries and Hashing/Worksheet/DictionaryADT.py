@@ -11,6 +11,7 @@ class DictionaryADT:
 
     """
     Inserts a new key-value pair (k,v) in the dictionary.
+    Will be overwritten in implementation
     """
 
     def put(self, k, v):
@@ -19,7 +20,7 @@ class DictionaryADT:
 
     """
     Looks for a key-value pair (K_i,V_i) whose key matches k in the dictionary.
-    Returns the value V_i if K_i is found in the dictionary, None otherwise.
+    Will be overwritten in implementation
     """
 
     def get(self, k):
@@ -28,8 +29,7 @@ class DictionaryADT:
 
     """
     Looks for a key-value pair (K_i,V_i) whose key matches k in the dictionary.
-    If there is no item whose key matches k, return None.
-    Otherwise remove (K_i,V_i) from the dictionary and return V_i.
+    Will be overwritten in implementation
     """
 
     def remove(self, k):

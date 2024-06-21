@@ -59,6 +59,11 @@ class ChainHashtable(DictionaryADT):
             s += "\n"
         s += "]"
         return s
+    
+    def items(self):
+        for bucket in self._table:
+            for item in bucket:
+                yield item._key, item._value
 
     """
     Inserts a new KV item in the CHt.
@@ -66,7 +71,20 @@ class ChainHashtable(DictionaryADT):
 
     def put(self, k, v):
         # TODO
+        # Compute the hash index and find the bucket
+        idx = self._hash_function(k)
+        bucket = self._table[idx]
+
+        # Case of key exists, replace the value
+        for item in bucket:
+            if item._key == k:
+                item._value = v
+                return
+
+        # Case of key does not exist
         new_item = KVItem(k, v)
+        bucket.append(new_item)
+        self._size += 1
 
     """
     Looks for a KV item whose key matches k in the CHt.
@@ -75,6 +93,13 @@ class ChainHashtable(DictionaryADT):
 
     def get(self, k):
         # TODO
+        # Compute the hash index and find the bucket
+        hidx = self._hash_function(k)
+        bucket = self._table[hidx]
+
+        for item in bucket:
+            if item._key == k:
+                return item._value
         return None
 
     """
@@ -84,6 +109,15 @@ class ChainHashtable(DictionaryADT):
 
     def remove(self, k):
         # TODO
+        # Compute the hash index and find the bucket
+        hidx = self._hash_function(k)
+        bucket = self._table[hidx]
+
+        for idx, item in enumerate(bucket):
+            if item._key == k:
+                rem_item = bucket.pop(idx)
+                self._size -= 1
+                return rem_item._value
         return None
 
     """
