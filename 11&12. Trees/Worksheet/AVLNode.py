@@ -2,7 +2,6 @@
 
 
 # Flag Optimization for add() is added as there will be no more than one actual rebalance occurs for each adding
-# Flag Optimization for remove() is added as to improve the efficiency
 
 
 from BSTNode import *
