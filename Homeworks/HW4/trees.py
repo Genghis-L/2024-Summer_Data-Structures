@@ -181,6 +181,7 @@ class Tree:
                 yield node
 
     def _subtree_postorder(self, node):
+        
         """Generate a postorder iteration of nodes in subtree rooted at node."""
         for c in self.children(node):  # for each child c
             for other in self._subtree_postorder(c):  # do postorder of c's subtree

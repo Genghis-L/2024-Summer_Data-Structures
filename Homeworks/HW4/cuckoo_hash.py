@@ -60,8 +60,19 @@ class CuckooHashTable:
         Hint: You may want to use the _resize function for cycles
         """
         # TODO
+        # If key exists, update the value
+        idx1 = self._hash1(k)
+        idx2 = self._hash2(k)
+        if self._array1[idx1] is not None and self._array1[idx1]._key == k:
+            self._array1[idx1]._value = v
+            return
+        if self._array2[idx2] is not None and self._array2[idx2]._key == k:
+            self._array2[idx2]._value = v
+            return
+
+        # If key does not exist, use cuckoo hashing strategy
         # By thoery, insertions succeed in expected constant time, as long as the load factor is below 50%. -- from Wikipedia
-        # Though this initial resizing process may not be very useful to reduce time by my test in practice
+        # (though this initial resizing process may not be very useful to reduce time by my test in practice)
         if self._size > self._maxsize // 2:
             self._resize()
 
