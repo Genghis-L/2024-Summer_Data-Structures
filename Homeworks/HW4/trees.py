@@ -181,7 +181,6 @@ class Tree:
                 yield node
 
     def _subtree_postorder(self, node):
-        
         """Generate a postorder iteration of nodes in subtree rooted at node."""
         for c in self.children(node):  # for each child c
             for other in self._subtree_postorder(c):  # do postorder of c's subtree
@@ -378,7 +377,7 @@ class Tree:
         @return: Nothing. Modify self
         """
         # TODO: Problem 2
-        # Solution 1: recursion
+        # Solution 1: Recursion
         if self.is_empty():
             return
         # If node parameter is omitted it flips the entire tree
@@ -419,6 +418,15 @@ class Tree:
         #         queue.enqueue(node._left)
         #     if node._right:
         #         queue.enqueue(node._right)
+
+        # # Solution 3: Use methods to achieve postorder traversal
+        # if node is not None:
+        #     iter = self._subtree_postorder(node)
+        # else:
+        #     iter = self.postorder()
+
+        # for node in iter:
+        #     node._left, node._right = node._right, node._left
 
 
 # ------------------------------------------------------------------------------------ #
