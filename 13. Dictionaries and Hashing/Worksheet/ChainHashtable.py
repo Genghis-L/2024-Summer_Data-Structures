@@ -59,7 +59,7 @@ class ChainHashtable(DictionaryADT):
             s += "\n"
         s += "]"
         return s
-    
+
     def items(self):
         for bucket in self._table:
             for item in bucket:
@@ -72,8 +72,8 @@ class ChainHashtable(DictionaryADT):
     def put(self, k, v):
         # TODO
         # Compute the hash index and find the bucket
-        idx = self._hash_function(k)
-        bucket = self._table[idx]
+        hidx = self._hash_function(k)
+        bucket = self._table[hidx]
 
         # Case of key exists, replace the value
         for item in bucket:
@@ -127,3 +127,4 @@ class ChainHashtable(DictionaryADT):
     def clear(self):
         for l in self._table:
             del l[:]
+        self._size = 0
