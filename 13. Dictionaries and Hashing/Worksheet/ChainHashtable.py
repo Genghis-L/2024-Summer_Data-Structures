@@ -35,21 +35,22 @@ class ChainHashtable(DictionaryADT):
         return False
 
     def __iter__(self):
+        # Initial Stage
         self._index = 0
         self._bucket_index = 0
         return self
 
     def __next__(self):
-        if self._bucket_index >= self._cap:
-            raise StopIteration
-        else:
+        while self._bucket_index < len(bucket):
             bucket = self._table[self._bucket_index]
-            k = bucket[self._index]
-            self._index += 1
-            if self._index >= len(bucket):
+            if self._index < len(bucket):
+                k = bucket[self._index]
+                self._index += 1
+                return k._key
+            else:
                 self._bucket_index += 1
                 self._index = 0
-            return k._key
+        raise StopIteration
 
     def __str__(self):
         s = "[\n"
