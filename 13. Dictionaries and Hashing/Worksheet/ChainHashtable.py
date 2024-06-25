@@ -35,13 +35,24 @@ class ChainHashtable(DictionaryADT):
         return False
 
     def __iter__(self):
-        # Initial Stage
         self._index = 0
         self._bucket_index = 0
         return self
 
     def __next__(self):
-        while self._bucket_index < len(bucket):
+        # if (self._bucket_index >= self._cap):
+        #     raise StopIteration
+        # else:
+        #     bucket = self._table[self._bucket_index]
+        #     k = bucket[self._index]
+        #     self._index += 1
+        #     if (self._index >= len(bucket)):
+        #         self._bucket_index += 1
+        #         self._index = 0
+        #     return k._key
+
+        while self._bucket_index < self._cap:
+            # while until we find a key (skip empty buckets)
             bucket = self._table[self._bucket_index]
             if self._index < len(bucket):
                 k = bucket[self._index]
@@ -52,6 +63,11 @@ class ChainHashtable(DictionaryADT):
                 self._index = 0
         raise StopIteration
 
+    def items(self):
+        for bucket in self._table:
+            for item in bucket:
+                yield item._key, item._value
+
     def __str__(self):
         s = "[\n"
         for l in self._table:
@@ -60,11 +76,6 @@ class ChainHashtable(DictionaryADT):
             s += "\n"
         s += "]"
         return s
-
-    def items(self):
-        for bucket in self._table:
-            for item in bucket:
-                yield item._key, item._value
 
     """
     Inserts a new KV item in the CHt.

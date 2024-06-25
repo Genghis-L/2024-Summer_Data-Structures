@@ -4,7 +4,6 @@ import graph_algorithms
 import graph_output_tools as got
 
 
-
 def main():
 
     print(" *** INIT ***\n")
@@ -18,13 +17,13 @@ def main():
     scg = AdjacencyMatrixGraph(9)
     scg.strongly_connect()
     print(scg)
-    got.visualize(rcg)
+    got.visualize(scg)
     print("Mesh graph with 9 vertices")
     mg = AdjacencyListsGraph(9)
     mg.mesh()
     print(mg)
-    got.visualize(rcg)
-    
+    got.visualize(mg)
+
     print("\n *** GRAPH EXPLORATION ***\n")
 
     print("BFS of the mesh")
@@ -52,5 +51,6 @@ def main():
     mst = graph_algorithms.computeMinimumSpanningTree(scg, 0)
     print(mst)
     got.visualize(mst)
+
 
 main()

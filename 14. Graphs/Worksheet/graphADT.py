@@ -2,12 +2,14 @@
 This interface represents a directed graph.
 @author morin (http://opendatastructures.org/)
 """
-class Graph:
 
+
+class Graph:
     """
     A self(V, E) has a number of vertices that is fixed upon initialization.
     The number of edges grows with every successful call to add_edge.
     """
+
     def __init__(self, n):
         self._nb_vertices = n
         self._nb_edges = 0
@@ -16,6 +18,7 @@ class Graph:
     Return the overall number of vertices in the graph.
     @return the # of vertices (int)
     """
+
     def nb_vertices(self):
         return self._nb_vertices
 
@@ -23,6 +26,7 @@ class Graph:
     Return the overall number of edges in the graph.
     @return the # of edges (int)
     """
+
     def nb_edges(self):
         return self._nb_edges
 
@@ -32,6 +36,7 @@ class Graph:
     @param i the id of the source node 
     @param j the id of the destination node
     """
+
     def add_edge(self, i, j):
         pass
 
@@ -41,6 +46,7 @@ class Graph:
     @param i the id of the source node 
     @param j the id of the destination node
     """
+
     def remove_edge(self, i, j):
         pass
 
@@ -50,6 +56,7 @@ class Graph:
     @param j the id of the destination node
     @return True if (i -> j) exists, False otherwise
     """
+
     def has_edge(self, i, j):
         pass
 
@@ -58,6 +65,7 @@ class Graph:
     @param i the id of the source node 
     @return 
     """
+
     def out_edges(self, i):
         pass
 
@@ -66,6 +74,7 @@ class Graph:
     @param i the id of the destination node
     @return 
     """
+
     def in_edges(self, i):
         pass
 
@@ -74,6 +83,7 @@ class Graph:
     @param i  the identifier of the vertex
     @return the number of outgoing edges on vertex i
     """
+
     def out_degree(self, i):
         pass
 
@@ -82,6 +92,7 @@ class Graph:
     @param i  the identifier of the vertex
     @return the number of ingoing edges on vertex i
     """
+
     def in_degree(self, i):
         pass
 
@@ -104,22 +115,25 @@ class Graph:
     """
     Generate a randomly connected graph.
     """
+
     def randomly_connect(self):
         n = self.nb_vertices()
         import random
-        for i in range(n): 
-            for j in range(n): 
-                rVal = random.randint(0, n-1)
-                if ((i != j) and ((rVal == 0) or (rVal == i))): 
+
+        for i in range(n):
+            for j in range(n):
+                rVal = random.randint(0, n - 1)
+                if (i != j) and ((rVal == 0) or (rVal == i)):
                     self.add_edge(i, j)
 
     """
     Generate a strongly connected graph. 
     The produced graph connects every vertex v to vertices v+1 and v+2.
     """
+
     def strongly_connect(self):
         n = self.nb_vertices()
-        for k in range(n): 
+        for k in range(n):
             self.add_edge(k, (k + 1) % n)
             self.add_edge(k, (k + 2) % n)
 
@@ -129,15 +143,21 @@ class Graph:
     value. To produce a non-directed graph, every connection between two
     vertices A and B is represented by two edges (A->B) and (B->A)
     """
+
     def mesh(self):
         import math
+
         n = int(math.sqrt(self.nb_vertices()))
         for k in range(self.nb_vertices()):
-            if (k % n > 0):
+            # Horizontal egdes from k to k-1
+            if k % n > 0:
                 self.add_edge(k, k - 1)
-            if (k >= n):
+            # Vertical edges from k to k-n
+            if k >= n:
                 self.add_edge(k, k - n)
-            if (k % n != n - 1):
+            # Horizontal egdes from k to k+1
+            if k % n != n - 1:
                 self.add_edge(k, k + 1)
-            if (k < (n * (n - 1))):
+            # Vertical edges from k to k+n
+            if k < (n * (n - 1)):
                 self.add_edge(k, k + n)

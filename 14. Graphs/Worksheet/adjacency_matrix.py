@@ -8,8 +8,9 @@ class AdjacencyMatrixGraph(Graph):
     def __init__(self, n):
         super().__init__(n)
         self._initialize()
-                
+
     def _initialize(self):
+        # Initialize an empty adjacency matrix
         am = []
         n = self.nb_vertices()
         for i in range(n):
@@ -17,12 +18,12 @@ class AdjacencyMatrixGraph(Graph):
         self._adj_matrix = am
 
     def add_edge(self, i, j):
-        if (not self._adj_matrix[i][j]):
+        if self._adj_matrix[i][j] is False:
             self._nb_edges += 1
             self._adj_matrix[i][j] = True
 
     def remove_edge(self, i, j):
-        if (self._adj_matrix[i][j]):
+        if self._adj_matrix[i][j] is True:
             self._nb_edges -= 1
             self._adj_matrix[i][j] = False
 
@@ -31,14 +32,14 @@ class AdjacencyMatrixGraph(Graph):
 
     def in_edges(self, i):
         out = list()
-        for j in range(self.n):
+        for j in range(self.nb_vertices()):
             if self._adj_matrix[j][i]:
                 out.append(j)
         return out
-        
+
     def in_degree(self, i):
         deg = 0
-        for j in range(self.n):
+        for j in range(self.nb_vertices()):
             if self._adj_matrix[j][i]:
                 deg += 1
         return deg
